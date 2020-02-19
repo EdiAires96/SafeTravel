@@ -1,0 +1,335 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_travel_consultationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Appointment">
+    <Key>
+      <PropertyRef Name="appointment_id" />
+    </Key>
+    <Property Name="appointment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="medic_id" Type="int" Nullable="false" />
+    <Property Name="patient_id" Type="int" Nullable="false" />
+    <Property Name="diagnostic_id" Type="int" />
+    <Property Name="a_date" Type="date" Nullable="false" />
+    <Property Name="obs" Type="text" />
+    <Property Name="kit_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Diagnostic">
+    <Key>
+      <PropertyRef Name="diagnostic_id" />
+    </Key>
+    <Property Name="diagnostic_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="destination" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="d_route" Type="text" Nullable="false" />
+    <Property Name="begin_date" Type="date" Nullable="false" />
+    <Property Name="end_date" Type="date" Nullable="false" />
+    <Property Name="reason" Type="text" Nullable="false" />
+    <Property Name="health_condition" Type="text" Nullable="false" />
+    <Property Name="accommodation" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="activities" Type="text" Nullable="false" />
+    <Property Name="region_id" Type="int" Nullable="false" />
+    <Property Name="country" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="environment" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="isSmoker" Type="binary" MaxLength="1" Nullable="false" />
+    <Property Name="allergic" Type="text" Nullable="false" />
+    <Property Name="obs" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Kit">
+    <Key>
+      <PropertyRef Name="kit_id" />
+    </Key>
+    <Property Name="kit_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="medic_id" Type="int" Nullable="false" />
+    <Property Name="info" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Kit_Product">
+    <Key>
+      <PropertyRef Name="kit_id" />
+      <PropertyRef Name="product_id" />
+    </Key>
+    <Property Name="kit_id" Type="int" Nullable="false" />
+    <Property Name="product_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Medic">
+    <Key>
+      <PropertyRef Name="medic_id" />
+    </Key>
+    <Property Name="medic_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="m_mame" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="phone_number" Type="int" Nullable="false" />
+    <Property Name="m_email" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="ident" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="is_active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Order_Pharmacy">
+    <Key>
+      <PropertyRef Name="order_id" />
+    </Key>
+    <Property Name="order_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pharmacy_id" Type="int" Nullable="false" />
+    <Property Name="product_id" Type="int" Nullable="false" />
+    <Property Name="order_date" Type="date" Nullable="false" />
+    <Property Name="delivery_date" Type="date" Nullable="false" />
+    <Property Name="info" Type="text" />
+  </EntityType>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="patient_id" />
+    </Key>
+    <Property Name="patient_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="p_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="phone_number" Type="int" />
+    <Property Name="p_email" Type="nvarchar" MaxLength="30" />
+    <Property Name="p_address" Type="nvarchar" MaxLength="50" />
+    <Property Name="job" Type="nvarchar" MaxLength="30" />
+    <Property Name="naturality" Type="nvarchar" MaxLength="30" />
+    <Property Name="genre" Type="char" MaxLength="1" />
+    <Property Name="date_of_birth" Type="date" />
+    <Property Name="number_health" Type="bigint" />
+    <Property Name="financial_number" Type="bigint" />
+  </EntityType>
+  <EntityType Name="Pharmacy">
+    <Key>
+      <PropertyRef Name="pharmacy_id" />
+    </Key>
+    <Property Name="pharmacy_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="p_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="adress" Type="nvarchar" MaxLength="70" Nullable="false" />
+    <Property Name="phone_number" Type="int" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="is_active" Type="bit" Nullable="false" />
+    <Property Name="ident" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="product_id" />
+    </Key>
+    <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="p_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="price" Type="float" Nullable="false" />
+    <Property Name="info" Type="text" />
+    <Property Name="is_active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Region">
+    <Key>
+      <PropertyRef Name="region_id" />
+    </Key>
+    <Property Name="region_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="r_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="countries" Type="text" />
+    <Property Name="precautions" Type="text" />
+    <Property Name="info" Type="text" />
+  </EntityType>
+  <EntityType Name="Stock">
+    <Key>
+      <PropertyRef Name="pharmacy_id" />
+      <PropertyRef Name="product_id" />
+    </Key>
+    <Property Name="pharmacy_id" Type="int" Nullable="false" />
+    <Property Name="product_id" Type="int" Nullable="false" />
+    <Property Name="quantity" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Kit__medic_id__2C3393D0">
+    <End Role="Medic" Type="Self.Medic" Multiplicity="1" />
+    <End Role="Kit" Type="Self.Kit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Medic">
+        <PropertyRef Name="medic_id" />
+      </Principal>
+      <Dependent Role="Kit">
+        <PropertyRef Name="medic_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Diagnostic">
+    <End Role="Diagnostic" Type="Self.Diagnostic" Multiplicity="0..1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Diagnostic">
+        <PropertyRef Name="diagnostic_id" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="diagnostic_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kit">
+    <End Role="Kit" Type="Self.Kit" Multiplicity="0..1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kit">
+        <PropertyRef Name="kit_id" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="kit_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kit2">
+    <End Role="Kit" Type="Self.Kit" Multiplicity="1" />
+    <End Role="Kit_Product" Type="Self.Kit_Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kit">
+        <PropertyRef Name="kit_id" />
+      </Principal>
+      <Dependent Role="Kit_Product">
+        <PropertyRef Name="kit_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Medic">
+    <End Role="Medic" Type="Self.Medic" Multiplicity="1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Medic">
+        <PropertyRef Name="medic_id" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="medic_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Patient">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="patient_id" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="patient_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pharmacy">
+    <End Role="Pharmacy" Type="Self.Pharmacy" Multiplicity="1" />
+    <End Role="Order_Pharmacy" Type="Self.Order_Pharmacy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pharmacy">
+        <PropertyRef Name="pharmacy_id" />
+      </Principal>
+      <Dependent Role="Order_Pharmacy">
+        <PropertyRef Name="pharmacy_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pharmacy2">
+    <End Role="Pharmacy" Type="Self.Pharmacy" Multiplicity="1" />
+    <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pharmacy">
+        <PropertyRef Name="pharmacy_id" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="pharmacy_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Order_Pharmacy" Type="Self.Order_Pharmacy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="Order_Pharmacy">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product2">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Kit_Product" Type="Self.Kit_Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="Kit_Product">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product3">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Region">
+    <End Role="Region" Type="Self.Region" Multiplicity="1" />
+    <End Role="Diagnostic" Type="Self.Diagnostic" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="region_id" />
+      </Principal>
+      <Dependent Role="Diagnostic">
+        <PropertyRef Name="region_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="db_travel_consultationModelStoreContainer">
+    <EntitySet Name="Appointment" EntityType="Self.Appointment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Diagnostic" EntityType="Self.Diagnostic" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kit" EntityType="Self.Kit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kit_Product" EntityType="Self.Kit_Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Medic" EntityType="Self.Medic" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order_Pharmacy" EntityType="Self.Order_Pharmacy" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pharmacy" EntityType="Self.Pharmacy" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Kit__medic_id__2C3393D0" Association="Self.FK__Kit__medic_id__2C3393D0">
+      <End Role="Medic" EntitySet="Medic" />
+      <End Role="Kit" EntitySet="Kit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Diagnostic" Association="Self.FK_Diagnostic">
+      <End Role="Diagnostic" EntitySet="Diagnostic" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kit" Association="Self.FK_Kit">
+      <End Role="Kit" EntitySet="Kit" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kit2" Association="Self.FK_Kit2">
+      <End Role="Kit" EntitySet="Kit" />
+      <End Role="Kit_Product" EntitySet="Kit_Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Medic" Association="Self.FK_Medic">
+      <End Role="Medic" EntitySet="Medic" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Patient" Association="Self.FK_Patient">
+      <End Role="Patient" EntitySet="Patient" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pharmacy" Association="Self.FK_Pharmacy">
+      <End Role="Pharmacy" EntitySet="Pharmacy" />
+      <End Role="Order_Pharmacy" EntitySet="Order_Pharmacy" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pharmacy2" Association="Self.FK_Pharmacy2">
+      <End Role="Pharmacy" EntitySet="Pharmacy" />
+      <End Role="Stock" EntitySet="Stock" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product" Association="Self.FK_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Order_Pharmacy" EntitySet="Order_Pharmacy" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product2" Association="Self.FK_Product2">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Kit_Product" EntitySet="Kit_Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product3" Association="Self.FK_Product3">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Stock" EntitySet="Stock" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Region" Association="Self.FK_Region">
+      <End Role="Region" EntitySet="Region" />
+      <End Role="Diagnostic" EntitySet="Diagnostic" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

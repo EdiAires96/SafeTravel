@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="db_travel_consultationModelStoreContainer" CdmEntityContainer="db_travel_consultationEntities1">
+    <EntitySetMapping Name="Appointment">
+      <EntityTypeMapping TypeName="db_travel_consultationModel.Appointment">
+        <MappingFragment StoreEntitySet="Appointment">
+          <ScalarProperty Name="appointment_id" ColumnName="appointment_id" />
+          <ScalarProperty Name="medic_id" ColumnName="medic_id" />
+          <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+          <ScalarProperty Name="diagnostic_id" ColumnName="diagnostic_id" />
+          <ScalarProperty Name="a_date" ColumnName="a_date" />
+          <ScalarProperty Name="obs" ColumnName="obs" />
+          <ScalarProperty Name="kit_id" ColumnName="kit_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Diagnostic">
+      <EntityTypeMapping TypeName="db_travel_consultationModel.Diagnostic">
+        <MappingFragment StoreEntitySet="Diagnostic">
+          <ScalarProperty Name="diagnostic_id" ColumnName="diagnostic_id" />
+          <ScalarProperty Name="destination" ColumnName="destination" />
+          <ScalarProperty Name="d_route" ColumnName="d_route" />
+          <ScalarProperty Name="begin_date" ColumnName="begin_date" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="reason" ColumnName="reason" />
+          <ScalarProperty Name="health_condition" ColumnName="health_condition" />
+          <ScalarProperty Name="accommodation" ColumnName="accommodation" />
+          <ScalarProperty Name="activities" ColumnName="activities" />
+          <ScalarProperty Name="region_id" ColumnName="region_id" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="environment" ColumnName="environment" />
+          <ScalarProperty Name="isSmoker" ColumnName="isSmoker" />
+          <ScalarProperty Name="allergic" ColumnName="allergic" />
+          <ScalarProperty Name="obs" ColumnName="obs" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kit">
+      <EntityTypeMapping TypeName="db_travel_consultationModel.Kit">
+        <MappingFragment StoreEntitySet="Kit">
+          <ScalarProperty Name="kit_id" ColumnName="kit_id" />
+          <ScalarProperty Name="medic_id" ColumnName="medic_id" />
+          <ScalarProperty Name="info" ColumnName="info" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Medic">
+      <EntityTypeMapping TypeName="db_travel_consultationModel.Medic">
+        <MappingFragment StoreEntitySet="Medic">
+          <ScalarProperty Name="medic_id" ColumnName="medic_id" />
+          <ScalarProperty Name="m_mame" ColumnName="m_mame" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="m_email" ColumnName="m_email" />
+          <ScalarProperty Name="ident" ColumnName="ident" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order_Pharmacy">
+      <EntityTypeMapping TypeName="db_travel_consultationModel.Order_Pharmacy">
+        <MappingFragment StoreEntitySet="Order_Pharmacy">
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="pharmacy_id" ColumnName="pharmacy_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="order_date" ColumnName="order_date" />
+          <ScalarProperty Name="delivery_date" ColumnName="delivery_date" />
+          <ScalarProperty Name="info" ColumnName="info" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Patient">
+      <EntityTypeMapping TypeName="db_travel_consultationModel.Patient">
+        <MappingFragment StoreEntitySet="Patient">
+          <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+          <ScalarProperty Name="p_name" ColumnName="p_name" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="p_email" ColumnName="p_email" />
+          <ScalarProperty Name="p_address" ColumnName="p_address" />
+          <ScalarProperty Name="job" ColumnName="job" />
+          <ScalarProperty Name="naturality" ColumnName="naturality" />
+          <ScalarProperty Name="genre" ColumnName="genre" />
+          <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+          <ScalarProperty Name="number_health" ColumnName="number_health" />
+          <ScalarProperty Name="financial_number" ColumnName="financial_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pharmacy">
+      <EntityTypeMapping TypeName="db_travel_consultationModel.Pharmacy">
+        <MappingFragment StoreEntitySet="Pharmacy">
+          <ScalarProperty Name="pharmacy_id" ColumnName="pharmacy_id" />
+          <ScalarProperty Name="p_name" ColumnName="p_name" />
+          <ScalarProperty Name="adress" ColumnName="adress" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="ident" ColumnName="ident" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product">
+      <EntityTypeMapping TypeName="db_travel_consultationModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="p_name" ColumnName="p_name" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="info" ColumnName="info" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Region">
+      <EntityTypeMapping TypeName="db_travel_consultationModel.Region">
+        <MappingFragment StoreEntitySet="Region">
+          <ScalarProperty Name="region_id" ColumnName="region_id" />
+          <ScalarProperty Name="r_name" ColumnName="r_name" />
+          <ScalarProperty Name="countries" ColumnName="countries" />
+          <ScalarProperty Name="precautions" ColumnName="precautions" />
+          <ScalarProperty Name="info" ColumnName="info" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stock">
+      <EntityTypeMapping TypeName="db_travel_consultationModel.Stock">
+        <MappingFragment StoreEntitySet="Stock">
+          <ScalarProperty Name="pharmacy_id" ColumnName="pharmacy_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Kit_Product" TypeName="db_travel_consultationModel.Kit_Product" StoreEntitySet="Kit_Product">
+      <EndProperty Name="Kit">
+        <ScalarProperty Name="kit_id" ColumnName="kit_id" />
+      </EndProperty>
+      <EndProperty Name="Product">
+        <ScalarProperty Name="product_id" ColumnName="product_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

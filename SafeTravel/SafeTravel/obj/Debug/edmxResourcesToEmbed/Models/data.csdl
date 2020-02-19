@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_travel_consultationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Appointment">
+    <Key>
+      <PropertyRef Name="appointment_id" />
+    </Key>
+    <Property Name="appointment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="medic_id" Type="Int32" Nullable="false" />
+    <Property Name="patient_id" Type="Int32" Nullable="false" />
+    <Property Name="diagnostic_id" Type="Int32" />
+    <Property Name="a_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="obs" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="kit_id" Type="Int32" />
+    <NavigationProperty Name="Diagnostic" Relationship="Self.FK_Diagnostic" FromRole="Appointment" ToRole="Diagnostic" />
+    <NavigationProperty Name="Kit" Relationship="Self.FK_Kit" FromRole="Appointment" ToRole="Kit" />
+    <NavigationProperty Name="Medic" Relationship="Self.FK_Medic" FromRole="Appointment" ToRole="Medic" />
+    <NavigationProperty Name="Patient" Relationship="Self.FK_Patient" FromRole="Appointment" ToRole="Patient" />
+  </EntityType>
+  <EntityType Name="Diagnostic">
+    <Key>
+      <PropertyRef Name="diagnostic_id" />
+    </Key>
+    <Property Name="diagnostic_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="destination" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="d_route" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="begin_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="end_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="health_condition" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="accommodation" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="activities" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="region_id" Type="Int32" Nullable="false" />
+    <Property Name="country" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="environment" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="isSmoker" Type="Binary" MaxLength="1" FixedLength="true" Nullable="false" />
+    <Property Name="allergic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="obs" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Appointment" Relationship="Self.FK_Diagnostic" FromRole="Diagnostic" ToRole="Appointment" />
+    <NavigationProperty Name="Region" Relationship="Self.FK_Region" FromRole="Diagnostic" ToRole="Region" />
+  </EntityType>
+  <EntityType Name="Kit">
+    <Key>
+      <PropertyRef Name="kit_id" />
+    </Key>
+    <Property Name="kit_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="medic_id" Type="Int32" Nullable="false" />
+    <Property Name="info" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Appointment" Relationship="Self.FK_Kit" FromRole="Kit" ToRole="Appointment" />
+    <NavigationProperty Name="Medic" Relationship="Self.FK__Kit__medic_id__2C3393D0" FromRole="Kit" ToRole="Medic" />
+    <NavigationProperty Name="Product" Relationship="Self.Kit_Product" FromRole="Kit" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Medic">
+    <Key>
+      <PropertyRef Name="medic_id" />
+    </Key>
+    <Property Name="medic_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="m_mame" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="phone_number" Type="Int32" Nullable="false" />
+    <Property Name="m_email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ident" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="is_active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Appointment" Relationship="Self.FK_Medic" FromRole="Medic" ToRole="Appointment" />
+    <NavigationProperty Name="Kit" Relationship="Self.FK__Kit__medic_id__2C3393D0" FromRole="Medic" ToRole="Kit" />
+  </EntityType>
+  <EntityType Name="Order_Pharmacy">
+    <Key>
+      <PropertyRef Name="order_id" />
+    </Key>
+    <Property Name="order_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pharmacy_id" Type="Int32" Nullable="false" />
+    <Property Name="product_id" Type="Int32" Nullable="false" />
+    <Property Name="order_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="delivery_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="info" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Pharmacy" Relationship="Self.FK_Pharmacy" FromRole="Order_Pharmacy" ToRole="Pharmacy" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Product" FromRole="Order_Pharmacy" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="patient_id" />
+    </Key>
+    <Property Name="patient_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="p_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="phone_number" Type="Int32" />
+    <Property Name="p_email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="p_address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="job" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="naturality" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="genre" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="date_of_birth" Type="DateTime" Precision="0" />
+    <Property Name="number_health" Type="Int64" />
+    <Property Name="financial_number" Type="Int64" />
+    <NavigationProperty Name="Appointment" Relationship="Self.FK_Patient" FromRole="Patient" ToRole="Appointment" />
+  </EntityType>
+  <EntityType Name="Pharmacy">
+    <Key>
+      <PropertyRef Name="pharmacy_id" />
+    </Key>
+    <Property Name="pharmacy_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="p_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="adress" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="phone_number" Type="Int32" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="is_active" Type="Boolean" Nullable="false" />
+    <Property Name="ident" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Order_Pharmacy" Relationship="Self.FK_Pharmacy" FromRole="Pharmacy" ToRole="Order_Pharmacy" />
+    <NavigationProperty Name="Stock" Relationship="Self.FK_Pharmacy2" FromRole="Pharmacy" ToRole="Stock" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="product_id" />
+    </Key>
+    <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="p_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="price" Type="Double" Nullable="false" />
+    <Property Name="info" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="is_active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Order_Pharmacy" Relationship="Self.FK_Product" FromRole="Product" ToRole="Order_Pharmacy" />
+    <NavigationProperty Name="Stock" Relationship="Self.FK_Product3" FromRole="Product" ToRole="Stock" />
+    <NavigationProperty Name="Kit" Relationship="Self.Kit_Product" FromRole="Product" ToRole="Kit" />
+  </EntityType>
+  <EntityType Name="Region">
+    <Key>
+      <PropertyRef Name="region_id" />
+    </Key>
+    <Property Name="region_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="r_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="countries" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="precautions" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="info" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Diagnostic" Relationship="Self.FK_Region" FromRole="Region" ToRole="Diagnostic" />
+  </EntityType>
+  <EntityType Name="Stock">
+    <Key>
+      <PropertyRef Name="pharmacy_id" />
+      <PropertyRef Name="product_id" />
+    </Key>
+    <Property Name="pharmacy_id" Type="Int32" Nullable="false" />
+    <Property Name="product_id" Type="Int32" Nullable="false" />
+    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Pharmacy" Relationship="Self.FK_Pharmacy2" FromRole="Stock" ToRole="Pharmacy" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Product3" FromRole="Stock" ToRole="Product" />
+  </EntityType>
+  <Association Name="FK_Diagnostic">
+    <End Role="Diagnostic" Type="Self.Diagnostic" Multiplicity="0..1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Diagnostic">
+        <PropertyRef Name="diagnostic_id" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="diagnostic_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kit">
+    <End Role="Kit" Type="Self.Kit" Multiplicity="0..1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kit">
+        <PropertyRef Name="kit_id" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="kit_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Medic">
+    <End Role="Medic" Type="Self.Medic" Multiplicity="1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Medic">
+        <PropertyRef Name="medic_id" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="medic_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Patient">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="patient_id" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="patient_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Region">
+    <End Role="Region" Type="Self.Region" Multiplicity="1" />
+    <End Role="Diagnostic" Type="Self.Diagnostic" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="region_id" />
+      </Principal>
+      <Dependent Role="Diagnostic">
+        <PropertyRef Name="region_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Kit__medic_id__2C3393D0">
+    <End Role="Medic" Type="Self.Medic" Multiplicity="1" />
+    <End Role="Kit" Type="Self.Kit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Medic">
+        <PropertyRef Name="medic_id" />
+      </Principal>
+      <Dependent Role="Kit">
+        <PropertyRef Name="medic_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pharmacy">
+    <End Role="Pharmacy" Type="Self.Pharmacy" Multiplicity="1" />
+    <End Role="Order_Pharmacy" Type="Self.Order_Pharmacy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pharmacy">
+        <PropertyRef Name="pharmacy_id" />
+      </Principal>
+      <Dependent Role="Order_Pharmacy">
+        <PropertyRef Name="pharmacy_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Order_Pharmacy" Type="Self.Order_Pharmacy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="Order_Pharmacy">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pharmacy2">
+    <End Role="Pharmacy" Type="Self.Pharmacy" Multiplicity="1" />
+    <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pharmacy">
+        <PropertyRef Name="pharmacy_id" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="pharmacy_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product3">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Kit_Product">
+    <End Role="Kit" Type="Self.Kit" Multiplicity="*" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="db_travel_consultationEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Appointment" EntityType="Self.Appointment" />
+    <EntitySet Name="Diagnostic" EntityType="Self.Diagnostic" />
+    <EntitySet Name="Kit" EntityType="Self.Kit" />
+    <EntitySet Name="Medic" EntityType="Self.Medic" />
+    <EntitySet Name="Order_Pharmacy" EntityType="Self.Order_Pharmacy" />
+    <EntitySet Name="Patient" EntityType="Self.Patient" />
+    <EntitySet Name="Pharmacy" EntityType="Self.Pharmacy" />
+    <EntitySet Name="Product" EntityType="Self.Product" />
+    <EntitySet Name="Region" EntityType="Self.Region" />
+    <EntitySet Name="Stock" EntityType="Self.Stock" />
+    <AssociationSet Name="FK_Diagnostic" Association="Self.FK_Diagnostic">
+      <End Role="Diagnostic" EntitySet="Diagnostic" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kit" Association="Self.FK_Kit">
+      <End Role="Kit" EntitySet="Kit" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Medic" Association="Self.FK_Medic">
+      <End Role="Medic" EntitySet="Medic" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Patient" Association="Self.FK_Patient">
+      <End Role="Patient" EntitySet="Patient" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Region" Association="Self.FK_Region">
+      <End Role="Region" EntitySet="Region" />
+      <End Role="Diagnostic" EntitySet="Diagnostic" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Kit__medic_id__2C3393D0" Association="Self.FK__Kit__medic_id__2C3393D0">
+      <End Role="Medic" EntitySet="Medic" />
+      <End Role="Kit" EntitySet="Kit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pharmacy" Association="Self.FK_Pharmacy">
+      <End Role="Pharmacy" EntitySet="Pharmacy" />
+      <End Role="Order_Pharmacy" EntitySet="Order_Pharmacy" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product" Association="Self.FK_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Order_Pharmacy" EntitySet="Order_Pharmacy" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pharmacy2" Association="Self.FK_Pharmacy2">
+      <End Role="Pharmacy" EntitySet="Pharmacy" />
+      <End Role="Stock" EntitySet="Stock" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product3" Association="Self.FK_Product3">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Stock" EntitySet="Stock" />
+    </AssociationSet>
+    <AssociationSet Name="Kit_Product" Association="Self.Kit_Product">
+      <End Role="Kit" EntitySet="Kit" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
